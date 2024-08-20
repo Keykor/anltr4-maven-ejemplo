@@ -2,16 +2,16 @@ package oo2.redictado.NullRefactoring;
 
 import org.antlr.v4.runtime.tree.TerminalNode;
 
-import oo2.redictado.antlr4.HelloBaseVisitor;
+import oo2.redictado.antlr4.PJscriptParserBaseVisitor;
 
 
-public class NullVisitor extends HelloBaseVisitor<String>{
+public class NullVisitor extends PJscriptParserBaseVisitor<String>{
     @Override
     public String visitTerminal(TerminalNode node) {
-        String text = node.getText();
-        if (text.equals("hello"))
-            return text;
-        return " " + text;
+        if (node.getText().equals("<EOF>")){
+            return "";
+        }
+        return " " + node.getText();
     }
 
     @Override

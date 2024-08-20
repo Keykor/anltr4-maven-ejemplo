@@ -1,47 +1,49 @@
 package oo2.redictado.NullRefactoring;
 
-import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.tree.*;
 
+import oo2.redictado.ParseUtils;
 import oo2.redictado.Refactoring;
-import oo2.redictado.antlr4.HelloLexer;
-import oo2.redictado.antlr4.HelloParser;
+import oo2.redictado.antlr4.PJscriptParser;
 
 public class NullRefactoring extends Refactoring{
-    private String preconditionText = null;
-
-    private HelloParser createHelloParser (String text) {
-        CharStream charStream = CharStreams.fromString(text);
-        HelloLexer lexer = new HelloLexer(charStream);
-        CommonTokenStream tokens = new CommonTokenStream(lexer);
-        return new HelloParser(tokens);
-    }
+    private String preconditionTree = null;
 
     protected boolean checkPreconditions(String text) {
-        HelloParser parser = this.createHelloParser(text);
+        PJscriptParser parser = ParseUtils.createPJscriptParser(text);
 
-        if (parser.getNumberOfSyntaxErrors() > 0) {
-            preconditionText = null;
+        try {
+            this.preconditionTree = parser.program().toStringTree();
+            return true;
+        } catch (Exception e) {
+            this.preconditionTree = null;
             return false;
         }
-        
-        preconditionText = text;
-        
-        return true;
     }
+
     protected String transform(String text) {
-        HelloParser parser = this.createHelloParser(text);
-        ParseTree tree = parser.r();
-
-        NullVisitor visitor = new NullVisitor();
-        String transformedText = visitor.visit(tree);
-        
-        return transformedText;
+        PJscriptParser parser = ParseUtils.createPJscriptParser(text);
+        try {
+            ParseTree tree = parser.program();
+            NullVisitor visitor = new NullVisitor();
+            String transformedText = visitor.visit(tree);
+            return transformedText;
+        } catch (Exception e) {
+            return text;
+        }
     }
+    
     protected boolean checkPostconditions(String text) {
-        if (preconditionText == null) {
+        if (preconditionTree == null) {
             return false;
         }
-        return preconditionText.equals(text);
+
+        PJscriptParser parser = ParseUtils.createPJscriptParser(text);
+        try {
+            String postConditionTree = parser.program().toStringTree();
+            return preconditionTree.equals(postConditionTree);
+        } catch (Exception e) {
+            return false;
+        }
     }
 }
