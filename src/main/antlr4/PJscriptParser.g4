@@ -1,29 +1,33 @@
-parser grammar PJscriptParser;
-options { tokenVocab=PJscriptLexer; output=AST; }
+parser grammar BythonParser;
+// options { tokenVocab=BythonLexer; output=AST; }
 
 program
-    : (classDecl | methodDecl | statement)* EOF
+    : (classDecl | functionDecl | statement)* EOF
     ;
 
 classDecl
-    : CLASS Identifier (EXTENDS Identifier)? LBRACE classMember* RBRACE
+    : CLASS IDENTIFIER (LPAR identifierList? RPAR)? LBRACE classMember* RBRACE
     ;
 
 classMember
     : methodDecl
-    | variableDecl SEMI
+    | simpleAssignment SEMI
+    ;
+
+functionDecl
+    : DEF IDENTIFIER LPAR identifierList? RPAR block
     ;
 
 methodDecl
-    : DEF Identifier LPAR parameterList? RPAR block
+    : DEF IDENTIFIER LPAR methodParamList? RPAR block
     ;
 
-variableDecl
-    : Identifier (ASSIGN expression)?
+identifierList
+    : IDENTIFIER (COMMA IDENTIFIER)*
     ;
 
-parameterList
-    : Identifier (COMMA Identifier)*
+methodParamList
+    : (IDENTIFIER | SELF) (COMMA IDENTIFIER)*
     ;
 
 block
@@ -37,14 +41,29 @@ statement
     | whileStatement
     | forStatement
     | returnStatement
+    | CONTINUE SEMI
+    | BREAK SEMI
+    | PASS SEMI
     ;
 
 assignment
-    : (Identifier | objectProperty) ASSIGN expression
+    : simpleAssignment
+    | implicitAssignment
+    | compoundAssignment
     ;
 
+simpleAssignment
+    : IDENTIFIER ASSIGN expression
+    ;
+
+implicitAssignment
+    : (IDENTIFIER | objectProperty) (PLUS_ASSIGN | MINUS_ASSIGN | STAR_ASSIGN | SLASH_ASSIGN) expression
+    ;
+
+compoundAssignment: objectProperty ASSIGN expression;
+
 methodCall
-    : (callableExpression DOT)? Identifier LPAR argumentList? RPAR (DOT methodCall)?
+    : (callableExpression DOT)? IDENTIFIER LPAR argumentList? RPAR (DOT methodCall)?
     ;
 
 ifStatement
@@ -56,7 +75,7 @@ whileStatement
     ;
 
 forStatement
-    : FOR LPAR variableDecl SEMI valueExpression SEMI assignment RPAR block
+    : FOR IDENTIFIER IN (expression | IDENTIFIER) block
     ;
 
 returnStatement
@@ -66,34 +85,29 @@ returnStatement
 expression
     : valueExpression
     | assignment
-    | objectInstantation
     ;
 
 valueExpression
-    : valueExpression (STAR | SLASH ) valueExpression
-    | valueExpression (PLUS | MINUS ) valueExpression
-    | valueExpression (EQUAL | NOTEQUAL | LESSEQUAL | GREATEREQUAL | LESS | GREATER ) valueExpression
+    : valueExpression (STAR | SLASH) valueExpression
+    | valueExpression (PLUS | MINUS) valueExpression
+    | valueExpression (EQUAL | NOTEQUAL | LESSEQUAL | GREATEREQUAL | LESS | GREATER) valueExpression
     | NOT valueExpression
     | valueExpression AND valueExpression
     | valueExpression OR valueExpression
     | LPAR valueExpression RPAR
-    | NumberLiteral
+    | NUMBER_LITERAL
     | callableExpression
     | methodCall
     ;
 
 callableExpression
     : objectProperty
-    | Identifier
+    | IDENTIFIER
     | CallableLiteral   
     ;
 
-objectInstantation
-    : NEW Identifier LPAR argumentList? RPAR
-    ;
-
 objectProperty
-    : (Identifier | THIS) DOT Identifier
+    : (IDENTIFIER | SELF) DOT IDENTIFIER
     ;
 
 argumentList

@@ -4,15 +4,22 @@ class Animal {
     }
 }
 
-class Person extends Animal{
-    def greet() {
+class Person(Animal){
+
+    people = 0;
+
+    def __init__(self) {
+        people += 1;
+    }
+
+    def greet(self) {
         print("Hello, " + this.name);
     }
-    def birthday() {
+    def birthday(self) {
         this.age = this.age + 1;
     }
 
-    def getAge() {
+    def getAge(self) {
         return this.age;
     }
 }
@@ -25,9 +32,11 @@ def sumTwoNumbers(a, b) {
     return a + b;
 }
 
-person = new Person("Alice", 30);
+person = Person("Alice", 30);
 person.greet();
 person.birthday();
+
+hi = 'hi';
 
 number = 12.2;
 bool = True;
@@ -45,7 +54,7 @@ while (person.getAge() < 35) {
     person.birthday();
 }
 
-for (i = 0; i < 5; i = i + 1) {
+for i in range(1, Person.people + 1){
     person.greet();
 }
 

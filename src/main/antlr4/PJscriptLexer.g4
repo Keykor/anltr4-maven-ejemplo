@@ -1,40 +1,44 @@
-lexer grammar PJscriptLexer;
+lexer grammar BythonLexer;
 
-NEW : 'new';
 DEF: 'def';
 
-RETURN : 'return';
+RETURN: 'return';
 FOR: 'for';
 WHILE: 'while';
 IF: 'if';
 ELSE: 'else';
 ASSIGN : '=';
-SEMI : ';';
-LPAR : '(' ;
-RPAR : ')' ;
+SEMI: ';';
+LPAR: '(' ;
+RPAR: ')' ;
 LBRACE: '{';
 RBRACE: '}';
 COMMA: ',';
 
 CLASS: 'class';
-THIS: 'this';
-EXTENDS: 'extends';
+SELF: 'self';
 
 DOT: '.';
 STAR: '*';
 SLASH: '/';
 PLUS: '+';
 MINUS: '-';
+
+PLUS_ASSIGN: '+=';
+MINUS_ASSIGN: '-=';
+STAR_ASSIGN: '*=';
+SLASH_ASSIGN: '/=';
+
     
 CallableLiteral
-    : StringLiteral
+    : STRING_LITERAL
     | TRUE
     | FALSE
     ;
 
-NumberLiteral
-    : IntegerLiteral
-    | DoubleLiteral
+NUMBER_LITERAL
+    : INTEGER_LITERAL
+    | DOUBLE_LITERAL
     ;    
     
 EQUAL: '==';
@@ -46,22 +50,26 @@ GREATEREQUAL: '>=';
 AND: 'and';
 OR: 'or';
 NOT : 'not';
+IN: 'in';
 TRUE: 'True';
 FALSE: 'False';
+BREAK: 'break';
+CONTINUE: 'continue';
+PASS: 'pass';
 
-Identifier
+IDENTIFIER
     : [a-zA-Z_][a-zA-Z_0-9]*
     ;
 
-IntegerLiteral
+INTEGER_LITERAL
     : [0-9]+
     ;
 
-DoubleLiteral
+DOUBLE_LITERAL
     : [0-9]+'.'[0-9]+
     ;
 
-StringLiteral
+STRING_LITERAL
     : '"' .*? '"'
     ;
 
