@@ -29,7 +29,7 @@ MINUS_ASSIGN: '-=';
 STAR_ASSIGN: '*=';
 SLASH_ASSIGN: '/=';
 
-    
+
 CallableLiteral
     : STRING_LITERAL
     | TRUE
@@ -39,8 +39,8 @@ CallableLiteral
 NUMBER_LITERAL
     : INTEGER_LITERAL
     | DOUBLE_LITERAL
-    ;    
-    
+    ;
+
 EQUAL: '==';
 NOTEQUAL: '!=';
 LESS: '<';
@@ -71,6 +71,7 @@ DOUBLE_LITERAL
 
 STRING_LITERAL
     : '"' .*? '"'
+    | '\'' .*? '\''
     ;
 
 WS

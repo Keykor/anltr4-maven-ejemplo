@@ -1,0 +1,58 @@
+class Animal {
+    def eat() {
+        print("I am eating");
+    }
+}
+
+class Person(Animal) {
+    def greet() {
+        print("Hello, " + this.name);
+    }
+
+    def birthday() {
+        this.age = this.age + 1;
+    }
+
+    def getAge() {
+        return this.age;
+    }
+}
+
+def hello() {
+    print("Hello, World!");
+}
+
+def sum_two_numbers(a, b) {
+    return a + b;
+}
+
+person = Person("Alice", 30);
+person.greet();
+person.birthday();
+
+number = 12.2;
+my_bool = True;
+my_bool = False;
+
+if (person.age > 30) {
+    print("You are older than 30!");
+}
+
+if (person.getAge() > 30) {
+    print("You are older than 30!");
+}
+
+while (person.getAge() < 35) {
+    person.birthday();
+}
+
+for (i = 0; i < 5; i = i + 1) {
+    person.greet();
+}
+
+"hi".length();
+
+True.__repr__().__repr__();
+
+sum = 12 + 24.5;
+

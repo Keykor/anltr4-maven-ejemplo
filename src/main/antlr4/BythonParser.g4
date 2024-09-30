@@ -103,7 +103,7 @@ valueExpression
 callableExpression
     : objectProperty
     | IDENTIFIER
-    | CallableLiteral   
+    | CallableLiteral
     ;
 
 objectProperty
@@ -113,4 +113,3 @@ objectProperty
 argumentList
     : expression (COMMA expression)*
     ;
-
