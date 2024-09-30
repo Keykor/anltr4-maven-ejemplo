@@ -284,3 +284,4 @@ public class BythonParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> impl
 	 */
 	@Override public T visitMethodCall(@NotNull BythonParser.MethodCallContext ctx) { return visitChildren(ctx); }
 }
+
