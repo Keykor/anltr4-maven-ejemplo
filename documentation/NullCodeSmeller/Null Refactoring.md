@@ -1,5 +1,5 @@
-# Null Refactoring
+# Null Code Smeller
 
-Un refactoring que no hace nada 😎
+Un code smeller que no hace nada 😎
 
 Este es un ejemplo de dónde debería ir la documentación en el proyecto
