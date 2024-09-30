@@ -1,12 +1,11 @@
 parser grammar BythonParser;
-// options { tokenVocab=BythonLexer; output=AST; }
 
 program
     : (classDecl | functionDecl | statement)* EOF
     ;
 
 classDecl
-    : CLASS IDENTIFIER (LPAR identifierList? RPAR)? LBRACE classMember* RBRACE
+    : CLASS ID (LPAR identifierList? RPAR)? LBRACE classMember* RBRACE
     ;
 
 classMember
@@ -15,19 +14,19 @@ classMember
     ;
 
 functionDecl
-    : DEF IDENTIFIER LPAR identifierList? RPAR block
+    : DEF ID LPAR identifierList? RPAR block
     ;
 
 methodDecl
-    : DEF IDENTIFIER LPAR methodParamList? RPAR block
+    : DEF ID LPAR methodParamList? RPAR block
     ;
 
 identifierList
-    : IDENTIFIER (COMMA IDENTIFIER)*
+    : ID (COMMA ID)*
     ;
 
 methodParamList
-    : (IDENTIFIER | SELF) (COMMA IDENTIFIER)*
+    : (ID | SELF) (COMMA ID)*
     ;
 
 block
@@ -41,6 +40,8 @@ statement
     | whileStatement
     | forStatement
     | returnStatement
+    | importStatement
+    | tryExceptStatement
     | CONTINUE SEMI
     | BREAK SEMI
     | PASS SEMI
@@ -53,21 +54,21 @@ assignment
     ;
 
 simpleAssignment
-    : IDENTIFIER ASSIGN expression
+    : ID ASSIGN expression
     ;
 
 implicitAssignment
-    : (IDENTIFIER | objectProperty) (PLUS_ASSIGN | MINUS_ASSIGN | STAR_ASSIGN | SLASH_ASSIGN) expression
+    : (ID | objectProperty) (PLUS_ASSIGN | MINUS_ASSIGN | STAR_ASSIGN | SLASH_ASSIGN) expression
     ;
 
 compoundAssignment: objectProperty ASSIGN expression;
 
 methodCall
-    : (callableExpression DOT)? IDENTIFIER LPAR argumentList? RPAR (DOT methodCall)?
+    : (callableExpression DOT)? ID LPAR argumentList? RPAR (DOT methodCall)?
     ;
 
 ifStatement
-    : IF LPAR valueExpression RPAR block (ELSE block)?
+    : IF (LPAR valueExpression RPAR | valueExpression) block (ELSE block)?
     ;
 
 whileStatement
@@ -75,12 +76,30 @@ whileStatement
     ;
 
 forStatement
-    : FOR IDENTIFIER IN (expression | IDENTIFIER) block
+    : FOR ID IN (expression | ID) block
     ;
 
 returnStatement
     : RETURN expression? SEMI
     ;
+
+importStatement
+    : IMPORT moduleName (AS aliasName)? SEMI
+    | FROM moduleName IMPORT (ID | LPAR ID (COMMA ID)* RPAR | STAR) (AS aliasName)? SEMI
+    ;
+
+tryExceptStatement
+    : TRY block
+      (EXCEPT (exceptionList (AS ID)?)? block)*
+      (FINALLY block)?
+    ;
+
+exceptionList
+    : ID (UNION ID)*
+    ;
+
+moduleName: DOT? ID (DOT ID)*;
+aliasName: ID;
 
 expression
     : valueExpression
@@ -91,6 +110,10 @@ valueExpression
     : valueExpression (STAR | SLASH) valueExpression
     | valueExpression (PLUS | MINUS) valueExpression
     | valueExpression (EQUAL | NOTEQUAL | LESSEQUAL | GREATEREQUAL | LESS | GREATER) valueExpression
+    | valueExpression NOT IS valueExpression
+    | valueExpression IS valueExpression
+    | valueExpression NOT IN valueExpression
+    | valueExpression IN valueExpression
     | NOT valueExpression
     | valueExpression AND valueExpression
     | valueExpression OR valueExpression
@@ -98,16 +121,45 @@ valueExpression
     | NUMBER_LITERAL
     | callableExpression
     | methodCall
+    | lambdaExpression
+    ;
+
+lambdaExpression
+    : LAMBDA (LPAR identifierList? RPAR | identifierList)? (COLON expression | block)
     ;
 
 callableExpression
     : objectProperty
-    | IDENTIFIER
+    | ID
     | CallableLiteral
+    | collection
+    ;
+
+collection
+    : listLiteral
+    | tupleLiteral
+    | dictLiteral
+    | setLiteral
+    ;
+
+listLiteral
+    : LBRACK (expression (COMMA expression)*)? RBRACK
+    ;
+
+tupleLiteral
+    : LPAR (expression (COMMA expression)*)? RPAR
+    ;
+
+dictLiteral
+    : LBRACK (expression COLON expression (COMMA expression COLON expression)*)? RBRACK
+    ;
+
+setLiteral
+    : LBRACK (expression (COMMA expression)*) RBRACK
     ;
 
 objectProperty
-    : (IDENTIFIER | SELF) DOT IDENTIFIER
+    : (ID | SELF) DOT ID
     ;
 
 argumentList

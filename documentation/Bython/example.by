@@ -46,7 +46,7 @@ while (person.getAge() < 35) {
     person.birthday();
 }
 
-for (i = 0; i < 5; i = i + 1) {
+for _ in range(0, 100) {
     person.greet();
 }
 
@@ -56,3 +56,19 @@ True.__repr__().__repr__();
 
 sum = 12 + 24.5;
 
+try {
+    1;
+} except Exception | GreatException as e {
+    2;
+}
+
+lambda x, y: x + y;
+lambda a, b { return a + b; }
+
+if x in ['a', 'b', 'x'] {
+    return 2;
+}
+
+if x not in ['a', 'b', 'x'] {
+    return 3;
+}

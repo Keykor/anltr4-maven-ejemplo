@@ -1,19 +1,25 @@
 lexer grammar BythonLexer;
 
 DEF: 'def';
-
+LAMBDA: 'lambda';
 RETURN: 'return';
 FOR: 'for';
 WHILE: 'while';
 IF: 'if';
 ELSE: 'else';
+FROM: 'from';
+IMPORT: 'import';
+AS: 'as';
 ASSIGN : '=';
 SEMI: ';';
 LPAR: '(' ;
 RPAR: ')' ;
+LBRACK: '[';
+RBRACK: ']';
 LBRACE: '{';
 RBRACE: '}';
 COMMA: ',';
+COLON: ':';
 
 CLASS: 'class';
 SELF: 'self';
@@ -51,13 +57,18 @@ AND: 'and';
 OR: 'or';
 NOT : 'not';
 IN: 'in';
+IS: 'is';
+UNION: '|';
 TRUE: 'True';
 FALSE: 'False';
 BREAK: 'break';
 CONTINUE: 'continue';
 PASS: 'pass';
+TRY: 'try';
+EXCEPT: 'except';
+FINALLY: 'finally';
 
-IDENTIFIER
+ID
     : [a-zA-Z_][a-zA-Z_0-9]*
     ;
 
