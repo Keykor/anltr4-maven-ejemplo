@@ -3,10 +3,7 @@ package oo2.redictado.AnosmicCodeSmeller;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
-import org.antlr.v4.runtime.DefaultErrorStrategy;
 import org.antlr.v4.runtime.tree.ParseTree;
-import org.antlr.v4.runtime.misc.ParseCancellationException;
-import org.antlr.v4.runtime.BailErrorStrategy;
 
 import oo2.redictado.Aroma;
 import oo2.redictado.CodeSmeller;
@@ -20,10 +17,10 @@ public class AnosmicCodeSmeller implements CodeSmeller {
         BythonLexer lexer = new BythonLexer(stream);
         CommonTokenStream tokens = new CommonTokenStream(lexer);
         BythonParser parser = new BythonParser(tokens);
-        parser.setErrorHandler(new DefaultErrorStrategy());
 
         // Parses the code and checks for syntax errors
         ParseTree tree = parser.program();
+        System.out.println(parser.getNumberOfSyntaxErrors());
         if (parser.getNumberOfSyntaxErrors() > 0) {
             return new Aroma("AnosmicCodeSmeller", "Syntax error", true);
         }

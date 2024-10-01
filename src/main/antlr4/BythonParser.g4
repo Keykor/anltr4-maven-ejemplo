@@ -1,4 +1,5 @@
 parser grammar BythonParser;
+options { tokenVocab=BythonLexer; }
 
 program
     : (classDecl | functionDecl | statement)* EOF
