@@ -163,11 +163,11 @@ tupleLiteral
     ;
 
 dictLiteral
-    : LBRACK (expression COLON expression (COMMA expression COLON expression)*)? RBRACK
+    : LBRACE (expression COLON expression (COMMA expression COLON expression)*)? RBRACE
     ;
 
 setLiteral
-    : LBRACK (expression (COMMA expression)*) RBRACK
+    : LBRACE (expression (COMMA expression)*) RBRACE
     ;
 
 objectProperty
