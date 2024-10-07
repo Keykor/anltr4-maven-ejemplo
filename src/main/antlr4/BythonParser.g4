@@ -52,6 +52,7 @@ assignment
     : simpleAssignment
     | implicitAssignment
     | compoundAssignment
+    | indexAssignment
     ;
 
 simpleAssignment
@@ -61,8 +62,13 @@ simpleAssignment
 implicitAssignment
     : (ID | objectProperty) (PLUS_ASSIGN | MINUS_ASSIGN | STAR_ASSIGN | SLASH_ASSIGN) expression
     ;
+    
 
 compoundAssignment: objectProperty ASSIGN expression;
+
+indexAssignment
+    : indexAccess ASSIGN expression
+    ;
 
 methodCall
     : (callableExpression DOT)? ID LPAR argumentList? RPAR (DOT methodCall)?
@@ -123,6 +129,11 @@ valueExpression
     | callableExpression
     | methodCall
     | lambdaExpression
+    | indexAccess
+    ;
+    
+indexAccess
+    : callableExpression LBRACK expression RBRACK
     ;
 
 lambdaExpression
