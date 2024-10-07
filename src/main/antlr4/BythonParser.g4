@@ -75,7 +75,15 @@ methodCall
     ;
 
 ifStatement
-    : IF (LPAR valueExpression RPAR | valueExpression) block (ELSE block)?
+    : IF (LPAR valueExpression RPAR | valueExpression) block (elifClause)* elseClause?
+    ;
+
+elifClause
+    : ELIF (LPAR valueExpression RPAR | valueExpression) block
+    ;
+
+elseClause
+    : ELSE block
     ;
 
 whileStatement

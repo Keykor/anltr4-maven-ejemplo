@@ -1,5 +1,5 @@
-# Null Code Smeller
+# Anosmic Code Sniffer
 
-Un code smeller que no hace nada 😎
+Un code sniffer que no puede oler.
 
-Este es un ejemplo de dónde debería ir la documentación en el proyecto
+Este es un ejemplo de dónde debería ir la documentación en el proyecto.

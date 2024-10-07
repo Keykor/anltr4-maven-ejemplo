@@ -6,6 +6,7 @@ RETURN: 'return';
 FOR: 'for';
 WHILE: 'while';
 IF: 'if';
+ELIF: 'elif';
 ELSE: 'else';
 FROM: 'from';
 IMPORT: 'import';
