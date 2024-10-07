@@ -22,12 +22,12 @@ public class AnosmicCodeSniffer implements CodeSniffer {
         ParseTree tree = parser.program();
         System.out.println(parser.getNumberOfSyntaxErrors());
         if (parser.getNumberOfSyntaxErrors() > 0) {
-            return new Aroma("AnosmicCodeSmeller", "Syntax error", true);
+            return new Aroma("AnosmicCodeSniffer", "Syntax error", true);
         }
 
         // Visits the parse tree to check for bad smells
         AnosmicVisitor visitor = new AnosmicVisitor();
         boolean hasBadSmell = visitor.visit(tree);
-        return new Aroma("AnosmicCodeSmeller", "The code smells good", hasBadSmell);
+        return new Aroma("AnosmicCodeSniffer", "The code smells good", hasBadSmell);
     }
 }
