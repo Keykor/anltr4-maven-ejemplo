@@ -73,11 +73,11 @@ ID
     ;
 
 INTEGER_LITERAL
-    : [0-9]+
+    : '-'? [0-9]+
     ;
 
 DOUBLE_LITERAL
-    : [0-9]+'.'[0-9]+
+    : '-'? [0-9]+'.'[0-9]+
     ;
 
 STRING_LITERAL
