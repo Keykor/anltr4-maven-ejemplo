@@ -1,4 +1,4 @@
-package oo2.redictado.AnosmicCodeSmeller;
+package oo2.redictado.AnosmicCodeSniffer;
 
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
@@ -6,12 +6,12 @@ import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
 
 import oo2.redictado.Aroma;
-import oo2.redictado.CodeSmeller;
+import oo2.redictado.CodeSniffer;
 import oo2.redictado.antlr4.BythonLexer;
 import oo2.redictado.antlr4.BythonParser;
 
-public class AnosmicCodeSmeller implements CodeSmeller {
-    public Aroma smell(String code) {
+public class AnosmicCodeSniffer implements CodeSniffer {
+    public Aroma sniff(String code) {
         // Creates Bython Parser
         CharStream stream = CharStreams.fromString(code);
         BythonLexer lexer = new BythonLexer(stream);

@@ -1,4 +1,4 @@
-package oo2.redictado.AnosmicCodeSmeller;
+package oo2.redictado.AnosmicCodeSniffer;
 
 import oo2.redictado.antlr4.BythonParserBaseVisitor;
 import oo2.redictado.antlr4.BythonParser;
