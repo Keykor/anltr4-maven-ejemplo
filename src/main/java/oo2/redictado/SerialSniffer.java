@@ -3,10 +3,10 @@ package oo2.redictado;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SnifferPipeline {
+public class SerialSniffer {
     private List<CodeSniffer> sniffers;
 
-    public SnifferPipeline() {
+    public SerialSniffer() {
         sniffers = new ArrayList<>();
     }
 

@@ -58,7 +58,7 @@ El árbol de archivos se ve de la siguiente manera:
     │               ├── PrintSniffer
     │               │   ├── PrintSniffer.java
     │               │   └── PrintSnifferVisitor.java
-    │               └── SnifferPipeline.java
+    │               └── SerialSniffer.java
     └── test
         └── java
             └── oo2
@@ -73,11 +73,11 @@ El árbol de archivos se ve de la siguiente manera:
 
   - También hay carpetas/paquetes de ejemplo para el [`AnosmicCodeSniffer`](./src/main/java/oo2/redictado/AnosmicCodeSniffer/) y [`PrintSniffer`](./src/main/java/oo2/redictado/PrintSniffer/). Cada nuevo **code sniffer** que se implemente debe estar en su propia carpeta.
 
-  - La clase [`SnifferPipeline`](./src/main/java/oo2/redictado/SnifferPipeline.java) es la encargada de ejecutar los **code sniffers** en un orden específico y configurable.
+  - La clase [`SerialSniffer`](./src/main/java/oo2/redictado/SerialSniffer.java) es la encargada de ejecutar los **code sniffers** en un orden específico y configurable.
 
   - La clase [`Aroma`](./src/main/java/oo2/redictado/Aroma.java) representa un mensaje de olor, que contiene información sobre el olor detectado (si lo hubiera).
 
-  - La clase [`AromaReport`](./src/main/java/oo2/redictado/AromaReport.java) es un reporte que contiene todos los `Aroma` generados por los **code sniffers** de un `SnifferPipeline`.
+  - La clase [`AromaReport`](./src/main/java/oo2/redictado/AromaReport.java) es un reporte que contiene todos los `Aroma` generados por los **code sniffers** de un `SerialSniffer`.
 
 - Las clases de prueba deben ir en [`src/test/java/oo2/redictado`](./src/test/java/oo2/redictado/).
 
