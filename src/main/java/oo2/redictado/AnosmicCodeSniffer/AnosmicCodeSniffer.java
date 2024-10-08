@@ -6,12 +6,13 @@ import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
 
 import oo2.redictado.Aroma;
+import oo2.redictado.AromaReport;
 import oo2.redictado.CodeSniffer;
 import oo2.redictado.antlr4.BythonLexer;
 import oo2.redictado.antlr4.BythonParser;
 
 public class AnosmicCodeSniffer implements CodeSniffer {
-    public Aroma sniff(String code) {
+    public void sniff(String code, AromaReport report) {
         // Creates Bython Parser
         CharStream stream = CharStreams.fromString(code);
         BythonLexer lexer = new BythonLexer(stream);
@@ -22,12 +23,12 @@ public class AnosmicCodeSniffer implements CodeSniffer {
         ParseTree tree = parser.program();
         System.out.println(parser.getNumberOfSyntaxErrors());
         if (parser.getNumberOfSyntaxErrors() > 0) {
-            return new Aroma("AnosmicCodeSniffer", "Syntax error", true);
+            throw new IllegalArgumentException("Syntax error");
         }
 
         // Visits the parse tree to check for bad smells
         AnosmicVisitor visitor = new AnosmicVisitor();
         boolean hasBadSmell = visitor.visit(tree);
-        return new Aroma("AnosmicCodeSniffer", "The code smells good", hasBadSmell);
+        report.addAroma(new Aroma("AnosmicCodeSniffer", "The code smells good", hasBadSmell));
     }
 }

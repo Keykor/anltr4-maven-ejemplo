@@ -5,7 +5,7 @@ public interface CodeSniffer {
      * Detect a sniff in the code.
      *
      * @param code the code to be analyzed
-     * @return the result of the sniff detection
+     * @param report the report to be updated with the sniff result
      */
-    public Aroma sniff(String code);
+    public void sniff(String code, AromaReport report);
 }
