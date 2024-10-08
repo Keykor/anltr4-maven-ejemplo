@@ -30,6 +30,19 @@ public class BythonParserBaseListener implements BythonParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterElseClause(@NotNull BythonParser.ElseClauseContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitElseClause(@NotNull BythonParser.ElseClauseContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterValueExpression(@NotNull BythonParser.ValueExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -368,6 +381,19 @@ public class BythonParserBaseListener implements BythonParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterElifClause(@NotNull BythonParser.ElifClauseContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitElifClause(@NotNull BythonParser.ElifClauseContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterWhileStatement(@NotNull BythonParser.WhileStatementContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -375,6 +401,19 @@ public class BythonParserBaseListener implements BythonParserListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitWhileStatement(@NotNull BythonParser.WhileStatementContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterIndexAccess(@NotNull BythonParser.IndexAccessContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitIndexAccess(@NotNull BythonParser.IndexAccessContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
@@ -440,6 +479,19 @@ public class BythonParserBaseListener implements BythonParserListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitCallableExpression(@NotNull BythonParser.CallableExpressionContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterIndexAssignment(@NotNull BythonParser.IndexAssignmentContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitIndexAssignment(@NotNull BythonParser.IndexAssignmentContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

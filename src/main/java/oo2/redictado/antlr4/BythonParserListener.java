@@ -20,6 +20,17 @@ public interface BythonParserListener extends ParseTreeListener {
 	void exitFunctionDecl(@NotNull BythonParser.FunctionDeclContext ctx);
 
 	/**
+	 * Enter a parse tree produced by {@link BythonParser#elseClause}.
+	 * @param ctx the parse tree
+	 */
+	void enterElseClause(@NotNull BythonParser.ElseClauseContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link BythonParser#elseClause}.
+	 * @param ctx the parse tree
+	 */
+	void exitElseClause(@NotNull BythonParser.ElseClauseContext ctx);
+
+	/**
 	 * Enter a parse tree produced by {@link BythonParser#valueExpression}.
 	 * @param ctx the parse tree
 	 */
@@ -306,6 +317,17 @@ public interface BythonParserListener extends ParseTreeListener {
 	void exitSimpleAssignment(@NotNull BythonParser.SimpleAssignmentContext ctx);
 
 	/**
+	 * Enter a parse tree produced by {@link BythonParser#elifClause}.
+	 * @param ctx the parse tree
+	 */
+	void enterElifClause(@NotNull BythonParser.ElifClauseContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link BythonParser#elifClause}.
+	 * @param ctx the parse tree
+	 */
+	void exitElifClause(@NotNull BythonParser.ElifClauseContext ctx);
+
+	/**
 	 * Enter a parse tree produced by {@link BythonParser#whileStatement}.
 	 * @param ctx the parse tree
 	 */
@@ -315,6 +337,17 @@ public interface BythonParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitWhileStatement(@NotNull BythonParser.WhileStatementContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link BythonParser#indexAccess}.
+	 * @param ctx the parse tree
+	 */
+	void enterIndexAccess(@NotNull BythonParser.IndexAccessContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link BythonParser#indexAccess}.
+	 * @param ctx the parse tree
+	 */
+	void exitIndexAccess(@NotNull BythonParser.IndexAccessContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link BythonParser#tupleLiteral}.
@@ -370,6 +403,17 @@ public interface BythonParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitCallableExpression(@NotNull BythonParser.CallableExpressionContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link BythonParser#indexAssignment}.
+	 * @param ctx the parse tree
+	 */
+	void enterIndexAssignment(@NotNull BythonParser.IndexAssignmentContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link BythonParser#indexAssignment}.
+	 * @param ctx the parse tree
+	 */
+	void exitIndexAssignment(@NotNull BythonParser.IndexAssignmentContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link BythonParser#methodCall}.

@@ -27,7 +27,7 @@ public class PrintSniffer implements CodeSniffer {
         }
 
         // Visits the parse tree to check for bad smells
-        PrintSnifferVisitor visitor = new PrintSnifferVisitor(report);
+        PrintSnifferVisitor visitor = new PrintSnifferVisitor(report, "PrintSniffer");
         visitor.visit(tree);
 
         if (!report.stinks()) {

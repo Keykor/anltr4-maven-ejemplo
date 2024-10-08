@@ -6,16 +6,19 @@ import oo2.redictado.antlr4.BythonParser;
 import oo2.redictado.antlr4.BythonParserBaseVisitor;
 
 public class PrintSnifferVisitor extends BythonParserBaseVisitor<Void> {
-    private AromaReport aromaReport;
-    public PrintSnifferVisitor(AromaReport aromaReport) {
+    private AromaReport report;
+    private String callerName;
+
+    public PrintSnifferVisitor(AromaReport report, String callerName) {
         super();
-        this.aromaReport = aromaReport;
+        this.report = report;
+        this.callerName = callerName;
     }
 
     @Override
     public Void visitMethodCall(BythonParser.MethodCallContext ctx) {
         if (ctx.ID().getText().equals("print")) {
-            aromaReport.addAroma(new Aroma("PrintSniffer", "The code has print calls.", true));
+            report.addAroma(new Aroma(this.callerName, "The code has print calls.", true));
         }
         return visitChildren(ctx);
     }

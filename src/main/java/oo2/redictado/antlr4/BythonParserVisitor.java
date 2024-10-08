@@ -19,6 +19,13 @@ public interface BythonParserVisitor<T> extends ParseTreeVisitor<T> {
 	T visitFunctionDecl(@NotNull BythonParser.FunctionDeclContext ctx);
 
 	/**
+	 * Visit a parse tree produced by {@link BythonParser#elseClause}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitElseClause(@NotNull BythonParser.ElseClauseContext ctx);
+
+	/**
 	 * Visit a parse tree produced by {@link BythonParser#valueExpression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -201,11 +208,25 @@ public interface BythonParserVisitor<T> extends ParseTreeVisitor<T> {
 	T visitSimpleAssignment(@NotNull BythonParser.SimpleAssignmentContext ctx);
 
 	/**
+	 * Visit a parse tree produced by {@link BythonParser#elifClause}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitElifClause(@NotNull BythonParser.ElifClauseContext ctx);
+
+	/**
 	 * Visit a parse tree produced by {@link BythonParser#whileStatement}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitWhileStatement(@NotNull BythonParser.WhileStatementContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link BythonParser#indexAccess}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitIndexAccess(@NotNull BythonParser.IndexAccessContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link BythonParser#tupleLiteral}.
@@ -241,6 +262,13 @@ public interface BythonParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitCallableExpression(@NotNull BythonParser.CallableExpressionContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link BythonParser#indexAssignment}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitIndexAssignment(@NotNull BythonParser.IndexAssignmentContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link BythonParser#methodCall}.
